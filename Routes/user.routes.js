@@ -12,7 +12,7 @@ const { getIO } = require('../socket');
 userRoutes.post('/register',async(req,res)=>{
     try {
     const { name, email, password,mobile,city } = req.body;
-    const userExists = await UserModel.findOne({ $or: [{ name }, { email }] });
+    const userExists = await UserModel.findOne({email});
     if (userExists) {
       return res.status(400).json({ msg: 'User already exists' });
     }
